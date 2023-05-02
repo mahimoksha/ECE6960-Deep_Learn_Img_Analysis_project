@@ -17,7 +17,6 @@ class PennFudanDataset(torch.utils.data.Dataset):
         all_frames = []
         for i in json_files:
             data = json.load(open(self.json_root_dir+i))
-            # labels = data['frames']
             for frame in data['frames']:
                 single_frame = []
                 for j in frame['labels']:
@@ -31,9 +30,6 @@ class PennFudanDataset(torch.utils.data.Dataset):
         # load images and masks
         img_path = os.path.join(self.image_files[idx])
         bound_box = self.bounding_box[idx]
-        # img_path = os.path.join(self.root, "PNGImages", self.imgs[idx])
-        # mask_path = os.path.join(self.root, "PedMasks", self.masks[idx])
-        # img = Image.open(img_path).convert("RGB")
         img = cv2.imread(img_path)
         boxes = []
         for i in bound_box:
@@ -43,9 +39,6 @@ class PennFudanDataset(torch.utils.data.Dataset):
         target = {}
         target["boxes"] = boxes
         target["image_id"] = image_id
-        # if self.transforms is not None:
-        #     img, target = self.transforms(img, target)
-
         return img, target
 
     def __len__(self):
@@ -61,7 +54,6 @@ if __name__ == '__main__':
         'shuffle': True}
     train_dataloader = torch.utils.data.DataLoader(train,**params)
     for image, target in train_dataloader:
-        # image = cv2.imread(image_files[-1000])
         image = image.cpu().detach().squeeze().numpy()
         for bb in target["boxes"][0]:
             cv2.rectangle(image, (int(bb[0]),int(bb[1])), (int(bb[2]),int(bb[3])), (0, 0, 255), 2)
