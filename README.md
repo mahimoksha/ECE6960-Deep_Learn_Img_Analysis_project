@@ -15,9 +15,9 @@ To run different Ablation studies:
 3. MobileNet v2 : sh run_mobilenet.sh
 
 After running the models the best model will be saved in results folder then run the following script file to get the results on test images:
-sh run_inference.sh resnet
-sh run_inference.sh vgg
-sh run_inference.sh mobile_net
+1. sh run_inference.sh resnet
+2. sh run_inference.sh vgg
+3. sh run_inference.sh mobile_net
 
 
 ### YOLOv5
