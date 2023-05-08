@@ -6,6 +6,8 @@ For running the model we have removed some of the images base on the following c
 2. If there are no bounding boxes available.
 3. coordinates of bounding boxes are same.
 
+Make sure all libraries are installed.
+
 To run different Ablation studies:
 
 1. Resent 50 : sh run_resnet.sh
@@ -13,4 +15,6 @@ To run different Ablation studies:
 3. MobileNet v2 : sh run_mobilenet.sh
 
 After running the models the best model will be saved in results folder then run the following script file to get the results on test images:
-sh run_inference.sh
+sh run_inference.sh resnet
+sh run_inference.sh vgg
+sh run_inference.sh mobile_net
