@@ -9,19 +9,22 @@ import cv2
 import torch
 import torchvision.transforms as transforms
 from PIL import Image
-import argparse
+# import argparse
 import time 
-
+import sys
 use_cuda = torch.cuda.is_available()
 if use_cuda:
     device="cuda:0"
 else:
     device="cpu"
 
-parser = argparse.ArgumentParser(description='Short sample app')
-parser.add_argument('-model'   ,type=str  , action="store", dest='model'     , default= "resnet"   )
-args = parser.parse_args()
-if args.model == "mobile_net":
+# parser = argparse.ArgumentParser(description='Short sample app')
+# parser.add_argument('-model'   ,type=str  , action="store", dest='model'     , default= "resnet"   )
+# args = parser.parse_args()
+model_name = sys.argv[1]
+print(model_name)
+if model_name == "mobile_net":
+    print("using mobile net model")
     backbone = torchvision.models.mobilenet_v2(weights="DEFAULT").features
     backbone.out_channels = 1280
     anchor_generator = AnchorGenerator(sizes=((64, 128, 512),),
@@ -36,7 +39,8 @@ if args.model == "mobile_net":
     model.to(device)
     model.load_state_dict(torch.load("results/best_model_mobilenetv2.torch"))
     results_dir = "test_results_mobilenetv2_final"
-elif args.model == "resnet":
+elif model_name == "resnet":
+    print("using resnet model")
     model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights="DEFAULT")
     num_classes = 10 
     in_features = model.roi_heads.box_predictor.cls_score.in_features
@@ -44,7 +48,8 @@ elif args.model == "resnet":
     model.cuda()
     model.load_state_dict(torch.load("results/best_model_resnet50.torch"))
     results_dir = "test_results_resnet50_final"
-elif args.model == "vgg":
+elif model_name == "vgg":
+    print("using vgg model")
     backbone = torchvision.models.vgg19(weights="DEFAULT").features
     backbone.out_channels = 512
     anchor_generator = AnchorGenerator(sizes=((64, 128, 512),),
