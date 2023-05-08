@@ -1,0 +1,5 @@
+weights: ''
+cfg: ./models/custom_yolov5s.yaml
+data: uc_data.yaml
+notest: true
+nosave: true

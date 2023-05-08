@@ -1,0 +1,3 @@
+weights: weights/yolov5s.pt
+cfg: ./models/custom_yolov5s.yaml
+data: uc_data.yaml

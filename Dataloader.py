@@ -13,7 +13,6 @@ class PennFudanDataset(torch.utils.data.Dataset):
         
         json_files = os.listdir(self.json_root_dir)
         image_file = []
-        c = 0
         all_frames = []
         for i in json_files:
             data = json.load(open(self.json_root_dir+i))
@@ -45,9 +44,9 @@ class PennFudanDataset(torch.utils.data.Dataset):
         return len(self.image_files)
     
 if __name__ == '__main__':
-    train_dir = "/home/sci/mkaranam/Desktop/DL_Image_Analysis_project_Detection/bdd100k/labels/seg_track_20/rles/"
+    train_dir = "bdd100k/labels/seg_track_20/rles/"
 
-    img_dir = "/home/sci/mkaranam/Desktop/DL_Image_Analysis_project_Detection/bdd100k/images/seg_track_20/"
+    img_dir = "images/seg_track_20/"
     train = PennFudanDataset(train_dir, img_dir,"train")
 
     params = {'batch_size': 1,
