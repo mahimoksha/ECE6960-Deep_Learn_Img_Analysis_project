@@ -1,6 +1,6 @@
 # ECE6960-Deep_Learn_Img_Analysis_project
 
-###PreProcessing
+### PreProcessing
 For running the model we have removed some of the images base on the following criteria:
 1. If bounding box dimensions are negative.
 2. If there are no bounding boxes available.
