@@ -18,3 +18,8 @@ After running the models the best model will be saved in results folder then run
 sh run_inference.sh resnet
 sh run_inference.sh vgg
 sh run_inference.sh mobile_net
+
+
+### YOLOv5
+
+To run the YOLO models, see yolov5/yolov5.ipynb
