@@ -22,4 +22,6 @@ After running the models the best model will be saved in results folder then run
 
 ### YOLOv5
 
-To run the YOLO models, see yolov5/yolov5.ipynb
+The YOLOv5 training is inspired from [this repo](https://github.com/williamhyin/yolov5s_bdd100k)
+
+To run the YOLO models for training and inference, see yolov5/yolov5.ipynb
